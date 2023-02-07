@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Catalogue
+{% endblock %}
+
+{% block body %}
+
+{% include('widgets/navbar/index.html.twig') %}
+
+<main>
+<h2>Notre Catalogue</h2>
+
+<div class="product-list">
+    <div class="wrapper">
+        <div class="card">
+            <div class="structure">
+                <div class="img-box">
+                    <img src="https://aniki-shop.com/wp-content/uploads/2022/09/t-shirt-manga-jojos-bizarre-adventure-robe-t-shirt-coton-bio-sur-jotaro-kujho-daddy-issues-teeshirt-manga-jojo-1.png" alt="">
+                </div>
+                <div class="body">
+                <div></div>
+                    <h6>Article</h6>
+                    <div class="price">
+                        <p>{{'23.00'|format_currency('EUR')}}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="structure">
+                <div class="img-box">
+                    <img src="https://aniki-shop.com/wp-content/uploads/2022/09/t-shirt-manga-jojos-bizarre-adventure-robe-t-shirt-coton-bio-sur-jotaro-kujho-daddy-issues-teeshirt-manga-jojo-1.png" alt="">
+                </div>
+                <div class="body">
+                <div></div>
+                    <h6>Article</h6>
+                    <div class="price">
+                        <p>{{'23.00'|format_currency('EUR')}}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    
+{% endblock %}
