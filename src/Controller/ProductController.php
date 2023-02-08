@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/product', name: 'app_product_list')]
+#[Route('/product')]
 class ProductController extends AbstractController
 {
     #[Route('/list', name: 'app_product_list')]

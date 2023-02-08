@@ -47,6 +47,7 @@
 
         {% for product in products %}
         <div class="card">
+        <a href="{{ path("app_product", { "id": product.id}) }}">
             <div class="structure">
                 <div class="img-box">
                     <img src="https://aniki-shop.com/wp-content/uploads/2022/09/t-shirt-manga-jojos-bizarre-adventure-robe-t-shirt-coton-bio-sur-jotaro-kujho-daddy-issues-teeshirt-manga-jojo-1.png" alt="">
@@ -59,6 +60,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         </div>
         {% endfor %}
         </div>
