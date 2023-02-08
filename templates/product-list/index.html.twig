@@ -8,8 +8,6 @@
 
 {% include('widgets/navbar/index.html.twig') %}
 
-{{dump(products)}}
-
 <main>
 <h2>Notre Catalogue</h2>
 
@@ -21,44 +19,6 @@
                     <img src="https://aniki-shop.com/wp-content/uploads/2022/09/t-shirt-manga-jojos-bizarre-adventure-robe-t-shirt-coton-bio-sur-jotaro-kujho-daddy-issues-teeshirt-manga-jojo-1.png" alt="">
                 </div>
                 <div class="body">
-                <div></div>
-                    <h6>T-Shirt Noir</h6>
-                    <div class="price">
-                        <p>{{'23.00'|format_currency('EUR')}}</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="structure">
-                <div class="img-box">
-                    <img src="https://aniki-shop.com/wp-content/uploads/2022/09/hoodie-sweat-a%CC%80-capuche-manga-anime-aniki-pantalon-manga-anime%CC%81-tokyo-ghoul-ken-kaneki-amon.jpg" alt="">
-                </div>
-                <div class="body">
-                <div></div>
-                    <h6>Sweat bleu</h6>
-                    <div class="price">
-                        <p>{{'34.99'|format_currency('EUR')}}</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        <div class="card">
-            <div class="structure">
-                <div class="img-box">
-                    <img src="https://aniki-shop.com/wp-content/uploads/2022/09/masque-asta-black-clover-yami-noelle-liebe-manga-anime.jpg" alt="">
-                </div>
-                <div class="body">
-                <div></div>
-                    <h6>Masque</h6>
-                    <div class="price">
-                        <p>{{'5.00'|format_currency('EUR')}}</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-
         {% for product in products %}
         <div class="card">
         <a href="{{ path("app_product", { "id": product.id}) }}">
@@ -77,52 +37,6 @@
             </a>
         </div>
         {% endfor %}
-        </div>
-        <div class="card">
-            <div class="structure">
-                <div class="img-box">
-                    <img src="https://aniki-shop.com/wp-content/uploads/2022/09/Bob-manga-jojo-hermit-purple-jotaro-dio-jojos-bizarre-adventure-bob-manga-noir.png" alt="">
-                </div>
-                <div class="body">
-                <div></div>
-                    <h6>Bob</h6>
-                    <div class="price">
-                        <p>{{'14.99'|format_currency('EUR')}}</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="structure">
-                <div class="img-box">
-                    <img src="https://aniki-shop.com/wp-content/uploads/2022/09/Bob-manga-jojo-hermit-purple-jotaro-dio-jojos-bizarre-adventure-bob-manga-noir.png" alt="">
-                </div>
-                <div class="body">
-                <div></div>
-                    <h6>Bob</h6>
-                    <div class="price">
-                        <p>{{'14.99'|format_currency('EUR')}}</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="structure">
-                <div class="img-box">
-                    <img src="https://aniki-shop.com/wp-content/uploads/2022/09/gris-unisexe-asta-black-clover-yami-noelle-liebe-manga-anime-casquette-cap-vintage-casquette-bob-bonnet-hat.jpg" alt="">
-                </div>
-                <div class="body">
-                <div></div>
-                    <h6>Casquette</h6>
-                    <div class="price">
-                        <p>{{'12.00'|format_currency('EUR')}}</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 </main>

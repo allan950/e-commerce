@@ -18,7 +18,7 @@ class Product
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 2000)]
     private ?string $description = null;
 
     #[ORM\Column]
