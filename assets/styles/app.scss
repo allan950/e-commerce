@@ -38,11 +38,11 @@ nav {
     }
 }
 
-.product-list {
-    width: 100%;
-    display: flex;
 
+    
     .card {
+        display: inline-grid;
+        grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
         .structure {
             background-color: silver;
             position: relative;
@@ -66,4 +66,3 @@ nav {
             }
         }
     }
-}

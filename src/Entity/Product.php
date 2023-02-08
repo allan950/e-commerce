@@ -33,6 +33,9 @@ class Product
     #[ORM\ManyToMany(targetEntity: Basket::class, mappedBy: 'product_id')]
     private Collection $baskets;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $urlimg = null;
+
     public function __construct()
     {
         $this->size_id = new ArrayCollection();
@@ -141,6 +144,18 @@ class Product
         if ($this->baskets->removeElement($basket)) {
             $basket->removeProductId($this);
         }
+
+        return $this;
+    }
+
+    public function getUrlimg(): ?string
+    {
+        return $this->urlimg;
+    }
+
+    public function setUrlimg(?string $urlimg): self
+    {
+        $this->urlimg = $urlimg;
 
         return $this;
     }
