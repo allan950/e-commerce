@@ -33,6 +33,18 @@ nav {
             margin: 6px 8px;
             font-weight: 600;
             text-transform: uppercase;
+
+        .lien {
+            text-decoration: none;
+            color: black;
+        }
+
+        .lien:hover {
+            color: cadetblue;
+            text-decoration: underline;
+            font-size: large;
+        }
+
         }
     }
     }
@@ -66,3 +78,35 @@ nav {
             }
         }
     }
+ 
+    .container {
+        display: flex;
+       
+ }
+
+ #nom-prd {
+    color: rgb(73, 164, 134);
+    display: flex;
+    justify-content: center;
+    
+ }
+ 
+
+ .image-container {
+    padding-left: 200px;
+    height: 300px;
+  }
+
+.produit-container {
+    padding-left: 100px;
+}
+ 
+  .qty-container {
+        display: flex;
+            #quantity {
+                border: 1px solid black;
+                background-color: white;
+                margin: 2px;
+                padding: 3px;
+            }
+  }

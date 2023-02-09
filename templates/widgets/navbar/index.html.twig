@@ -1,13 +1,13 @@
 <nav>
 <div class="navbar">
     <ul>
-        <li><p><a href="{{ path('home') }}"> Home</a></p></li>
-        <li><p><a href="{{ path('app_product_list') }}">Catalogue</a></p></li>
-        <li><p><a href="{{ path('app_login') }}">Se Connecter</a></p></li>
+        <li><p><a class="lien" href="{{ path('home') }}"> Home</a></p></li>
+        <li><p><a class="lien" href="{{ path('app_product_list') }}">Catalogue</a></p></li>
+        <li><p><a class="lien" href="{{ path('app_login') }}">Se Connecter</a></p></li>
         {% if app.user and is_granted("ROLE_ADMIN") %}
-        <li><p><a href="{{ path('app_admin') }}">Admin</a></p></li>
+        <li><p><a class="lien" href="{{ path('app_admin') }}">Admin</a></p></li>
         {% endif %}
-        <li><p><a href="{{ path('app_checkout') }}">Cart</a></p></li>
+        <li><p><a class="lien" href="{{ path('app_checkout') }}">Cart</a></p></li>
     </ul>
     </div>
 </nav>
