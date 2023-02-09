@@ -17,13 +17,14 @@
                     <div class="produit-container">
                         <h2 id="nom-prd">{{product.name}}</h2>
                         <p id="desc-prd">{{product.description}}</p>
+                            <p>Quantité :</p>
                         <div class="qty-container">
                             <button id="decrement-button">-</button>
                             <div id="quantity">1</div>
                             <button id="increment-button">+</button>
                         </div>
-                        <p>{{product.price|format_currency('EUR')}}</p>
-                        <a href="{{ path('app_add_product_to_cart', {'id': product.id}) }}">Ajouter au panier</a>
+                        <p class="prix-prd">{{product.price|format_currency('EUR')}}</p>
+                        <a class="add" href="{{ path('app_add_product_to_cart', {'id': product.id}) }}">Ajouter au panier</a>
                     </div>
                 <div>
             </div>

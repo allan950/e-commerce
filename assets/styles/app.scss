@@ -1,5 +1,5 @@
 body {
-    background-color: lightgray;
+    background-color: #CCE3DE;
     margin: 0;
 }
 
@@ -36,7 +36,7 @@ nav {
 
         .lien {
             text-decoration: none;
-            color: black;
+            color: #6B9080;
         }
 
         .lien:hover {
@@ -85,7 +85,7 @@ nav {
  }
 
  #nom-prd {
-    color: rgb(73, 164, 134);
+    color: #081C15;
     display: flex;
     justify-content: center;
     
@@ -106,7 +106,27 @@ nav {
             #quantity {
                 border: 1px solid black;
                 background-color: white;
-                margin: 2px;
-                padding: 3px;
+                margin: 1px;
+                padding: 1px;
             }
   }
+
+.prix-prd {
+    font-style: italic;
+    font-weight: 600;
+    color: #081C15;
+}
+
+.add {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 3px solid #D8F3DC;
+    color: #081C15;
+    background-color: #D8F3DC;
+
+    .add:hover {
+        text-decoration: underline;
+            font-size: large;
+    }
+}
