@@ -1,6 +1,10 @@
 body {
-    background-color: lightgray;
+    background-color: #CCE3DE;
     margin: 0;
+}
+
+.grp {
+    
 }
 
 h1 {
@@ -21,25 +25,40 @@ p {
     justify-content: center;
 }
 
+
+//Navbar
+
 nav {
     width: 100%;
     position: relative;
 
     .navbar {
         display: flex;
-        justify-content: center;
+        justify-content: right;
 
         ul {
             display: inline-flex;
 
-            li {
-                display: inline;
-                list-style: none;
-                margin: 6px 8px;
-                font-weight: 600;
-                text-transform: uppercase;
-            }
+        li {
+            display: inline;
+            list-style: none;
+            margin: 6px 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+
+        .lien {
+            text-decoration: none;
+            color: #6B9080;
         }
+
+        .lien:hover {
+            color: cadetblue;
+            text-decoration: underline;
+            font-size: large;
+        }
+
+        }
+    }
     }
 
     .side-options {
@@ -59,36 +78,127 @@ nav {
     }
 }
 
+//Page catalogue
 
+#ncata {
+    display: flex;
+    justify-content: center;
+}
+    
+    .card {
+        display: inline-grid;
+        grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+        padding: 20px;
+        margin: 30px;
+        transition: transform .5s;
+        background-color: #d8f3dc;
+          
+            &::after {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+              box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+              content: '';
+              opacity: 0;
+              z-index: -1;
+            }
+          
+            &:hover,
+            &:focus {
+              transform: scale3d(1.006, 1.006, 1);
+          
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
 
-.card {
-    display: inline-grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+        .structure {
+            background-color: silver;
+            position: relative;
 
-    .structure {
-        background-color: silver;
-        position: relative;
+            .img-box {
+                height: 440px;
 
-        .img-box {
-            height: 440px;
+                img {
+                    height: 100%;
+                }
+            }
 
-            img {
-                height: 100%;
+            .body {
+                position: absolute;
+                bottom: 0;
+
+                .price {
+                    padding: 10px;
+                    text-align: center;
+                }
             }
         }
+    
+ 
+    .container {
+        display: flex;
+       
+ }
 
-        .body {
-            position: absolute;
-            bottom: 0;
+ #nom-prd {
+    color: #081C15;
+    display: flex;
+    justify-content: center;
+    
+ }
+ 
 
-            .price {
-                padding: 10px;
-                text-align: center;
+ .image-container {
+    padding-left: 200px;
+    height: 300px;
+  }
+
+//Produits
+
+.produit-container {
+    padding-left: 100px;
+}
+ 
+  .qty-container {
+        display: flex;
+            #quantity {
+                border: 1px solid black;
+                background-color: white;
+                margin: 1px;
+                padding: 1px;
             }
-        }
-    }
+  }
+
+// Prix
+
+.prix-prd {
+    font-style: italic;
+    font-weight: 600;
+    color: #081C15;
 }
 
+//Bouton d'achat
+
+.add {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 10em;
+    padding: 4px;
+    color: #081C15;
+    background-color: #D8F3DC;
+
+    .add:hover {
+        text-decoration: underline;
+            font-size: large;
+    }
+}
 
 .admin-page {
     display: flex;
