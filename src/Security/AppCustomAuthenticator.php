@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,8 +22,11 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    private $userRepository;
+
+    public function __construct(private UrlGeneratorInterface $urlGenerator, UserRepository $userRepository)
     {
+        $this->userRepository = $userRepository;
     }
 
     public function authenticate(Request $request): Passport
@@ -30,6 +34,16 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
         $email = $request->request->get('email', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
+
+        /* dd(new Passport(
+            new UserBadge($email, function (string $userIdentifier) {
+                return $this->userRepository->findOneBy(['email' => $userIdentifier]);
+            }),
+            new PasswordCredentials($request->request->get('password', '')),
+            [
+                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+            ]
+        )); */
 
         return new Passport(
             new UserBadge($email),
@@ -45,6 +59,9 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+
+        //dd("There is a success");
+        
 
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_product_list'));

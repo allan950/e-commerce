@@ -13,4 +13,9 @@ class HomeController extends AbstractController {
 
         return $this->render('index.html.twig');
     }
+
+    #[Route('/admin', 'app_admin')]
+    public function accessBackOffice() {
+        return $this->render('back/index.html.twig');
+    }
 }

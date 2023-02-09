@@ -4,42 +4,27 @@ namespace App\Service;
 
 class ManageCart 
 {
+
     private Array $cart;
     private float $total;
 
     public function __construct()
     {
         $this->cart = [
-            "items" => [
-                "item1" => [
-                    "name" => "Top",
-                    "price" => 23.00,
-                    "quantity" => 1,
-                ],
-                "item2" => [
-                    "name" => "Pants",
-                    "price" => 12.00,
-                    "quantity" => 2,
-                ],
-                "item3" => [
-                    "name" => "Socks",
-                    "price" => 5.99,
-                    "quantity" => 5,
-                ],
-            ],
+            "items" => [],
             "count" => 0,
         ];
     }
 
     public function getCart() {
-        $this->updateCount();
+        //$this->updateCount();
 
         return $this->cart["items"];
 
     }
 
     public function getCount(): int {
-        return $this->cart["count"];
+        return count($this->cart['items']);
     }
 
     private function updateCount() {
@@ -64,26 +49,22 @@ class ManageCart
         return $this->total;
     }
 
-    static public function addItemToCart($product) {
-        $items = ManageCart::$cart["items"];
+    public function addItemToCart($product) {
+        $items = $this->cart["items"];
         $isItemNew = true;
 
-        foreach ($items as $item) {
-            if ($product === $item) {
+        foreach ($items as $keys => $item) {
+            if ($product["name"] === $item["name"] && $product["id"] === $item["id"]) {
                 $isItemNew = false;
-                $item["quantity"] += 1;
+                $items[$keys]["quantity"] += 1;
             }
         }
 
         if ($isItemNew == true) {
-            $items["item4"] = [
-                "name" => "Socks",
-                "price" => 5.99,
-                "quantity" => 5,
-            ];
+            array_push($items, $product);
         }
 
-        ManageCart::$cart["items"] = $items;
+        $this->cart["items"] = $items;
     }
 
     public function removeItem() {

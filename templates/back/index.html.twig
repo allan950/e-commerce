@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ path('app_admin_user_index') }}">Users</a>
+            </li>
+            <li>
+                <a href="{{ path('app_admin_product_index') }}">Produits</a>
+            </li>
+        </ul>
+    </nav>
+
+{% endblock %}

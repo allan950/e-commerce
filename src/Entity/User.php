@@ -45,9 +45,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Basket::class, mappedBy: 'user_id')]
     private Collection $baskets;
 
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Order::class)]
+    private Collection $order;
+
     public function __construct()
     {
         $this->baskets = new ArrayCollection();
+        $this->order = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +195,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->baskets->removeElement($basket)) {
             $basket->removeUserId($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrder(): Collection
+    {
+        return $this->order;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->order->contains($order)) {
+            $this->order->add($order);
+            $order->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->order->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getClient() === $this) {
+                $order->setClient(null);
+            }
         }
 
         return $this;

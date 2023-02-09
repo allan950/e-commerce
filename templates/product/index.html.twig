@@ -17,7 +17,7 @@
                     <div>
                         <h2>{{product.name}}</h2>
                         <p>{{product.price|format_currency('EUR')}}</p>
-                        <button>Ajouter au panier</button>
+                        <a href="{{ path('app_add_product_to_cart', {'id': product.id}) }}">Ajouter au panier</a>
                     </div>
                 <div>
             </div>
