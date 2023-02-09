@@ -24,7 +24,7 @@
                             <button id="increment-button">+</button>
                         </div>
                         <p class="prix-prd">{{product.price|format_currency('EUR')}}</p>
-                        <a class="add" href="{{ path('app_add_product_to_cart', {'id': product.id}) }}">Ajouter au panier</a>
+                        <a class="add" href="{{ path('app_add_product_to_cart', {'id': product.id}) }}"><i class="fa-solid fa-cart-shopping"></i>Ajouter au panier</a>                  
                     </div>
                 <div>
             </div>
