@@ -62,7 +62,7 @@ class CheckoutController extends AbstractController
 
         $session = \Stripe\Checkout\Session::retrieve($req->getSession()->get("order_payment_id"));
 
-        if ($this->$session) {
+        if ($session) {
             $req->getSession()->set("order_payment_id", "");
         }
 

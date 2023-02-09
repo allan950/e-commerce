@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+
+    {{ include('widgets/navbar/index.html.twig') }}
+
+
+    {% if orders %}
+
+    <main>
+
+    <div class="container-xl">
+
+    {% for order in orders %}
+
+        <div class="card mb-3" style="display: block;">
+  <div class="card-header" style="display: flex;">
+    <div class="col-sm-4">
+        Date de commande : {{order.orderDate|format_datetime()}}
+    </div>
+    <div class="col-sm-4">
+        Total : {{order.totalPriceTtc|format_currency('EUR')}}
+    </div>
+  </div>
+  <div class="card-body">
+    {% for item in order.items %}
+    <div class="mb-5" style="display: flex;">
+        <div class="col-sm-3">
+            <img src="" alt="">
+        </div>
+        <div class="col-lg-9">
+            <h5 class="card-title">{{item.name}}</h5>
+    <p class="card-text">Price: {{item.price}}</p>
+    <p class="card-text">Quantity: {{item.quantity}}</p>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="card-footer" style="display: flex;">
+    <div class="col-sm-2">
+        Sous-total : {{order.totalPriceHt|format_currency('EUR')}}
+    </div>
+    <div class="col-sm-2">
+        Total : {{order.totalPriceTtc|format_currency('EUR')}}
+    </div>
+  </div>
+</div>
+
+        {% endfor %}
+
+        </div>
+    </main>
+
+    {% endif %}
+{% endblock %}

@@ -3,6 +3,17 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
+
+<div class="admin-page">
+
+<div>
+{{ include('back/index.html.twig') }}
+</div>
+
+    <div class="content">
+
+    <div>
+
     <h1>Product index</h1>
 
     <table class="table">
@@ -38,4 +49,7 @@
     </table>
 
     <a href="{{ path('app_admin_product_new') }}">Create new</a>
+</div>
+    </div>
+    </div>
 {% endblock %}

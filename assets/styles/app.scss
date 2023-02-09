@@ -5,7 +5,10 @@ body {
 
 h1 {
     font-size: 5em;
-    color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    text-align: center;
+    font-weight: 700;
 }
 
 p {
@@ -20,6 +23,8 @@ p {
 
 nav {
     width: 100%;
+    position: relative;
+
     .navbar {
         display: flex;
         justify-content: center;
@@ -27,42 +32,153 @@ nav {
         ul {
             display: inline-flex;
 
-        li {
-            display: inline;
-            list-style: none;
-            margin: 6px 8px;
-            font-weight: 600;
-            text-transform: uppercase;
+            li {
+                display: inline;
+                list-style: none;
+                margin: 6px 8px;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
         }
     }
+
+    .side-options {
+        position: absolute;
+        top: 0;
+        right: 55px;
+
+        ul {
+            list-style: none;
+            color: black;
+            display: flex;
+
+            li {
+                margin: 0 10px;
+            }
+        }
     }
 }
 
 
-    
-    .card {
-        display: inline-grid;
-        grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
-        .structure {
-            background-color: silver;
-            position: relative;
 
-            .img-box {
-                height: 440px;
+.card {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
 
-                img {
-                    height: 100%;
+    .structure {
+        background-color: silver;
+        position: relative;
+
+        .img-box {
+            height: 440px;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .body {
+            position: absolute;
+            bottom: 0;
+
+            .price {
+                padding: 10px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+
+.admin-page {
+    display: flex;
+
+
+    .sidebar {
+        position: relative;
+        height: 100vh;
+        width: 200px;
+
+        nav {
+            background-color: black;
+            height: 100%;
+            padding: 16px 6px;
+            box-sizing: border-box;
+
+            ul {
+                list-style: none;
+                margin: 0;
+
+                li {
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    margin: 10px 6px;
+
+                    a {
+                        color: white;
+                        text-decoration: none;
+                        font-size: .85em;
+                    }
                 }
             }
+        }
+    }
 
-            .body {
-                position: absolute;
-                bottom: 0;
+    .content {
+        padding: 24px 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
 
-                .price {
-                    padding: 10px;
+        tr {
+            margin-bottom: 10px;
+
+            td,
+            th {
+                padding: 10px;
+                padding-top: 0;
+            }
+        }
+
+        form {
+
+            input,
+            select {
+                width: 100%;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+
+            input {
+                padding: 8px 18px;
+            }
+        }
+    }
+}
+
+.dashboard-home {
+
+    .grid {
+        display: grid;
+        justify-content: center;
+
+        .flex {
+            display: inline-flex;
+            justify-content: flex-start;
+            flex-flow: wrap;
+            width: 900px;
+
+            .container {
+                width: 400px;
+                border-radius: 12px;
+                border: 1px solid silver;
+                margin: 0 14px;
+                margin-bottom: 28px;
+
+                a {
+                    width: 100%;
                     text-align: center;
                 }
             }
         }
     }
+}

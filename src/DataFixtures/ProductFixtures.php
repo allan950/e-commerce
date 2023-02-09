@@ -17,7 +17,8 @@ class ProductFixtures extends Fixture
             $product->setName("Item ".$i."")
             ->setDescription($description)
             ->setPrice(rand(10.00, 100.00))
-            ->setCode("00000".$i."");
+            ->setCode("00000".$i."")
+            ->setUrlimg("https://aniki-shop.com/wp-content/uploads/2022/09/t-shirt-manga-jojos-bizarre-adventure-robe-t-shirt-coton-bio-sur-jotaro-kujho-daddy-issues-teeshirt-manga-jojo-1.png");
 
             $manager->persist($product);
         }

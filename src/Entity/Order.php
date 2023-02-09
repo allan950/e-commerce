@@ -16,17 +16,17 @@ class Order
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $order_date = null;
+    private ?\DateTimeInterface $orderDate = null;
 
-    #[ORM\ManyToOne(inversedBy: 'quantity')]
+    #[ORM\ManyToOne(inversedBy: 'order')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $client = null;
 
     #[ORM\Column]
-    private ?float $total_price_ht = null;
+    private ?float $totalPriceHt = null;
 
     #[ORM\Column]
-    private ?float $total_price_ttc = null;
+    private ?float $totalPriceTtc = null;
 
     #[ORM\Column(type: Types::ARRAY)]
     private array $items = [];
@@ -38,12 +38,12 @@ class Order
 
     public function getOrderDate(): ?\DateTimeInterface
     {
-        return $this->order_date;
+        return $this->orderDate;
     }
 
-    public function setOrderDate(\DateTimeInterface $order_date): self
+    public function setOrderDate(\DateTimeInterface $orderDate): self
     {
-        $this->order_date = $order_date;
+        $this->orderDate = $orderDate;
 
         return $this;
     }
@@ -62,24 +62,24 @@ class Order
 
     public function getTotalPriceHt(): ?float
     {
-        return $this->total_price_ht;
+        return $this->totalPriceHt;
     }
 
-    public function setTotalPriceHt(float $total_price_ht): self
+    public function setTotalPriceHt(float $totalPriceHt): self
     {
-        $this->total_price_ht = $total_price_ht;
+        $this->totalPriceHt = $totalPriceHt;
 
         return $this;
     }
 
     public function getTotalPriceTtc(): ?float
     {
-        return $this->total_price_ttc;
+        return $this->totalPriceTtc;
     }
 
-    public function setTotalPriceTtc(float $total_price_ttc): self
+    public function setTotalPriceTtc(float $totalPriceTtc): self
     {
-        $this->total_price_ttc = $total_price_ttc;
+        $this->totalPriceTtc = $totalPriceTtc;
 
         return $this;
     }

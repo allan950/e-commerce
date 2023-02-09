@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+
+    {{ include('widgets/navbar/index.html.twig') }}
+
+    <main>
+        <div class="dashboard-home">
+        <h1>Dashboard</h1>
+
+
+        <div class="container-fluid" style="width: 900px;">
+            <div class="row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+  <a href="{{path('app_dashboard_info')}}">
+    <div class="card" style="display: block;">
+  <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Informations personelles</h5>
+  </div>
+</div>
+</a>
+  </div>
+  <div class="col-sm-6">
+  <a href="{{path('app_dashboard_orders')}}">
+    <div class="card" style="display: block;">
+  <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Commandes passées</h5>
+  </div>
+</div>
+</a>
+  </div>
+</div>
+{% if app.user and is_granted("ROLE_ADMIN") %}
+
+<div class="row" style="margin-top: 20px">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+  <a href="{{path('app_admin_user_index')}}">
+    <div class="card" style="display: block;">
+  <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Privilèges Admin</h5>
+  </div>
+</div>
+</a>
+  </div>
+</div>
+
+{% endif %}
+        </div>
+
+    </main>
+{% endblock %}

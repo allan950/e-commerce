@@ -7,6 +7,7 @@ class ManageCart
 
     private Array $cart;
     private float $total;
+    private float $totalTTC;
 
     public function __construct()
     {
@@ -47,6 +48,15 @@ class ManageCart
         $this->calculateTotal();
 
         return $this->total;
+    }
+
+    public function getTotalTTC() {
+        $totalHt = $this->getTotal();
+        $totalTtc = $totalHt * 1.2;
+
+        $this->totalTTC = $totalTtc;
+
+        return $this->totalTTC;
     }
 
     public function addItemToCart($product) {

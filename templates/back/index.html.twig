@@ -1,9 +1,6 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
 
-{% block body %}
-
+<div class="sidebar">
     <nav>
         <ul>
             <li>
@@ -12,7 +9,9 @@
             <li>
                 <a href="{{ path('app_admin_product_index') }}">Produits</a>
             </li>
+            <li>
+                <a href="{{ path('app_admin_order_index') }}">Orders</a>
+            </li>
         </ul>
     </nav>
-
-{% endblock %}
+</div>

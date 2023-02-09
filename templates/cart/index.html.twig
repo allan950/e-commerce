@@ -7,11 +7,35 @@
 
 <h1>Votre Panier</h1>
 
+{% if cart_products %}
+
+{% for item in cart_products %}
+
 <div>
-                        <h2>Sweat</h2>
+                        <h2>{{item.name}}</h2>
                         <!--  <img src= {}> -->
-                        <p>Quantité :</p>
-                        <p>30EUR</p>
+                        <p>Quantité : {{item.quantity}}</p>
+                        <p>{{item.price|format_currency('EUR')}}</p>
                         <button>Delete</button>
 </div>
+
+{% endfor %}
+
+<div>
+
+    <div>
+        <div>
+            <p>Nombre d'articles : {{cart_count}}</p>
+        </div>
+        <div>
+            <p>Sous-total : {{cart_total|format_currency('EUR')}}</p>
+        </div>
+        <div>
+            <p>Total TTC : {{(cart_total_ttc)|format_currency('EUR')}}</p>
+        </div>
+    </div>
+
+    <a href="{{path('app_checkout')}}">Checkout</a>
+</div>
+{% endif %}
 {% endblock %}
