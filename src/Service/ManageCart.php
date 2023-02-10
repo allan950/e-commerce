@@ -59,6 +59,18 @@ class ManageCart
         return $this->totalTTC;
     }
 
+    public function getCartItem($id) {
+        if ($this->cart["items"]) {
+            foreach($this->cart["items"] as $cart) {
+                if ($cart["id"] == $id) {
+                    return $cart;
+                }
+            }
+        } else {
+            throw "There is no item in the cart";
+        }
+    }
+
     public function addItemToCart($product) {
         $items = $this->cart["items"];
         $isItemNew = true;
@@ -77,7 +89,16 @@ class ManageCart
         $this->cart["items"] = $items;
     }
 
-    public function removeItem() {
+    public function removeItem($item) {
+        $items = $this->cart["items"];
+        /* foreach ($this->cart["items"] as $key => $cart) {
+            if ($cart === $item) {
+                $items[$key] = "";
+            }
+        } */
 
+        array_splice($items, array_search($item, $items), 1);
+
+        $this->cart["items"] = $items;
     }
 }

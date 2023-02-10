@@ -31,4 +31,13 @@ class CartController extends AbstractController
             ]);
         }
     }
+
+    #[Route('/cart/remove/{id<[0-9]+>}', name: 'app_cart_remove_item')]
+    public function removeCartItem(Request $request, $id) {
+        $item = $request->getSession()->get("cart")->getCartItem($id);
+        
+        $request->getSession()->get("cart")->removeItem($item);
+
+        return $this->redirect("/cart");
+    }
 }

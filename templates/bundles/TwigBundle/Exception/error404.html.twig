@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}erreur 404{% endblock %}
+{% block body %}
+
+<main style="height: 100vh;">
+
+<div style="text-align: center">
+    <h1>Erreur<br>404</h1>
+    <div>
+    La page que cherchez n'a pas été trouvé!<br />
+    Retour à l'accueil <a href="{{path('home')}}">ici</a>
+    </div>
+</div>
+
+</main>
+
+{% endblock %}

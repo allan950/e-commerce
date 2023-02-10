@@ -20,64 +20,81 @@ class CheckoutController extends AbstractController
     {
         $items = $req->getSession()->get("cart")->getCart();
 
-        if ($items && $this->getUser()) {
-            \Stripe\Stripe::setApiKey($this->getParameter("api_key_stripe"));
+        if ($this->getUser()) {
 
-            $order = [];
+            if ($items) {
 
-            foreach($items as $key => $item) {
-                $order[$key] = [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => $item["name"],
+                \Stripe\Stripe::setApiKey($this->getParameter("api_key_stripe"));
+
+                $order = [];
+                $tokenProvider = $this->container->get('security.csrf.token_manager');
+                $token = $tokenProvider->getToken('stripe_token')->getValue();
+
+                foreach ($items as $key => $item) {
+                    $order[$key] = [
+                        'price_data' => [
+                            'currency' => 'eur',
+                            'product_data' => [
+                                'name' => $item["name"],
+                            ],
+                            'unit_amount' => intval($item["price"]) * 100,
                         ],
-                        'unit_amount' => intval($item["price"]) * 100,
-                    ],
-                    'quantity' => $item["quantity"],
-                ];
+                        'quantity' => $item["quantity"],
+                    ];
+                }
+
+                //dd($order);
+
+                $session = \Stripe\Checkout\Session::create([
+                    'line_items' => [$order],
+                    'mode' => 'payment',
+                    'success_url' => 'http://localhost:8000/checkout_success/' . $token,
+                    'cancel_url' => 'http://localhost:8000/checkout_error',
+                ]);
+
+                $req->getSession()->set("order_payment_id", $session->id);
+
+                return $this->redirect($session->url, 303);
+            } else {
+                return $this->redirect('/product/list');
             }
-
-            //dd($order);
-
-            $session = \Stripe\Checkout\Session::create([
-                'line_items' => [$order],
-                'mode' => 'payment',
-                'success_url' => 'http://localhost:8000/checkout_success',
-                'cancel_url' => 'http://localhost:8000/checkout_error',
-            ]);
-
-            $req->getSession()->set("order_payment_id", $session->id);
-
-            return $this->redirect($session->url, 303);
         } else {
-            return $this->redirect("/");
+            return $this->redirect("/login");
         }
     }
 
-    #[Route('/checkout_success', name: 'app_checkout_success')]
-    public function successfulCheckout(Request $req, OrderRepository $orderRepository)
-    {   
-        \Stripe\Stripe::setApiKey($this->getParameter("api_key_stripe"));
+    #[Route('/checkout_success/{token}', name: 'app_checkout_success')]
+    public function successfulCheckout(Request $req, $token, OrderRepository $orderRepository)
+    {
 
-        $session = \Stripe\Checkout\Session::retrieve($req->getSession()->get("order_payment_id"));
+        if ($this->isCsrfTokenValid("stripe_token", $token)) {
+            \Stripe\Stripe::setApiKey($this->getParameter("api_key_stripe"));
 
-        if ($session) {
-            $req->getSession()->set("order_payment_id", "");
+            $session = \Stripe\Checkout\Session::retrieve($req->getSession()->get("order_payment_id"));
+
+            if ($session) {
+                $req->getSession()->set("order_payment_id", "");
+            }
+
+            $order = new Order();
+            $order->setOrderDate(new DateTime())
+                ->setClient($this->getUser())
+                ->setTotalPriceHt($session->amount_subtotal / 100)
+                ->setTotalPriceTtc($session->amount_total / 100)
+                ->setItems($req->getSession()->get("cart")->getCart());
+
+            $orderRepository->save($order, true);
+
+            $req->getSession()->set("cart", "");
+
+            return $this->render("checkout/success.html.twig", []);
         }
 
-        $order = new Order();
-        $order->setOrderDate(new DateTime())
-        ->setClient($this->getUser())
-        ->setTotalPriceHt($session->amount_subtotal/100)
-        ->setTotalPriceTtc($session->amount_total/100)
-        ->setItems($req->getSession()->get("cart")->getCart())
-        ;
-
-        $orderRepository->save($order, true);
-
-        $req->getSession()->set("cart", "");
-
         return $this->redirect('/');
+    }
+
+    #[Route('/checkout_error', name: 'app_checkout_error')]
+    public function failedCheckout() {
+        return $this->render('checkout/failed.html.twig', []);
     }
 }

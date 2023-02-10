@@ -34,7 +34,7 @@ nav {
 
     .navbar {
         display: flex;
-        justify-content: right;
+        justify-content: center;
 
         ul {
             display: inline-flex;
@@ -63,7 +63,7 @@ nav {
 
     .side-options {
         position: absolute;
-        top: 0;
+        top: 15px;
         right: 55px;
 
         ul {
@@ -74,6 +74,29 @@ nav {
             li {
                 margin: 0 10px;
             }
+        }
+    }
+}
+
+
+.home-page {
+    text-align: center;
+
+    h2 {
+        margin: 70px 0;
+    }
+
+    h4 {
+        margin-bottom: 30px;
+    }
+
+    .paragraphs {
+        width: 70%;
+        display: block;
+        margin: auto;
+
+        p {
+            font-size: .80em;
         }
     }
 }

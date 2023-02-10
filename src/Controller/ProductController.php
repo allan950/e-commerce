@@ -33,9 +33,8 @@ class ProductController extends AbstractController
 
     #[Route('/product/{id<[0-9]+>}/add-to-cart', name: 'app_add_product_to_cart')]
     public function addProductToCart(Product $product, Request $req, $id) {
-        //dd($id);
         $session = $req->getSession();
-        //$session->remove("cart");        
+        $quantity = $req->request->get("itemQuantity");
         
         if ($session->get("cart")) {
             $cart = $session->get("cart");
@@ -43,17 +42,21 @@ class ProductController extends AbstractController
         else {
             $cart = new ManageCart();
         }
-        //$currentCart = $cart->getCart();
+        
         $item = [
             "id" => $product->getId(),
             "name" => $product->getName(),
             "price" => $product->getPrice(),
-            "quantity" => 1,
+            "quantity" => intval($quantity),
         ];
 
         $cart->addItemToCart($item);
         $session->set("cart", $cart);
+
+        $route = $req->headers->get('referer');
+
+        return $this->redirect($route);
         
-        return $this->redirect("/product/product/".$id);
+        //return $this->redirect("/product/product/".$id);
     }
 }

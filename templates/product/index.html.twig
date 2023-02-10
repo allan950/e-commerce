@@ -14,18 +14,20 @@
             </div>
             <div>
                 <div>
+                <form action="{{ path('app_add_product_to_cart', {'id': product.id}) }}" method="post">
                     <div class="produit-container">
                         <h2 id="nom-prd">{{product.name}}</h2>
                         <p id="desc-prd">{{product.description}}</p>
                             <p>Quantité :</p>
-                        <div class="qty-container">
-                            <button id="decrement-button">-</button>
-                            <div id="quantity">1</div>
-                            <button id="increment-button">+</button>
+                        <div class="input-group qty-container">
+                            {# <button class="btn btn-outline-secondary" id="decrement-button">-</button> #}
+                            <input type="number" class="form-control" name="itemQuantity" value="1" min="1">
+                            {# <button class="btn btn-outline-secondary" id="increment-button">+</button> #}
                         </div>
-                        <p class="prix-prd">{{product.price|format_currency('EUR')}}</p>
-                        <a class="add" href="{{ path('app_add_product_to_cart', {'id': product.id}) }}"><i class="fa-solid fa-cart-shopping"></i>Ajouter au panier</a>                  
+                        <p class="prix-prd">{{product.price|format_currency('EUR')}}</p>    
+                        <input type="submit" class="add" value="Ajouter au panier">             
                     </div>
+                    </form>
                 <div>
             </div>
         </div>
